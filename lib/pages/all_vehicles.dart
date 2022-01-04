@@ -1,5 +1,5 @@
 import 'package:control_autos/class.dart';
-import 'package:control_autos/pages/services_vehicl.dart';
+import 'package:control_autos/pages/all_services_vehicl.dart';
 import 'package:control_autos/pages/add_vheicles.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +15,7 @@ class _allVehiclesState extends State<allVehicles> {
   @override
   void initState() {
     vehicles = [
-      vehicle('Ford', 'Focus', 'SLE', '2006', 'JNAB656DADSAJBDAH6', '4.2', 'std',[service('Macrch','cambio de aceite', 300.34,'40000','Remac',true),service('Macrch','cambio de aceite', 300.34,'40000','Remac',false),service('Macrch','cambio de aceite', 300.34,'40000','Remac',true),service('Macrch','cambio de aceite', 300.34,'40000','Remac',false),service('Macrch','cambio de aceite', 300.34,'40000','Remac',false),],),
+      vehicle('Ford', 'Focus', 'SLE', '2006', 'JNAB656DADSAJBDAH6', '4.2', 'std',[service('12/14/2021','cambio de aceite', 300.34,'40000','Remac',true),service('16/06/2019','cambio de aceite', 300.34,'40000','Remac',false),service('12/14/2021','cambio de aceite', 300.34,'40000','Remac',true),service('12/14/2021','cambio de aceite', 300.34,'40000','Remac',false),service('12/14/2021','cambio de aceite', 300.34,'40000','Remac',false),],),
       
       
     ];
@@ -31,7 +31,7 @@ class _allVehiclesState extends State<allVehicles> {
             IconButton(
               tooltip: 'Search vehicle',
               onPressed: (){}, 
-              icon: Icon(Icons.search)),
+              icon: const Icon(Icons.search)),
             IconButton(
               tooltip: 'Add Vehicle',
                 onPressed: () {
@@ -51,11 +51,11 @@ class _allVehiclesState extends State<allVehicles> {
           itemBuilder: (context, i) {
             return ExpansionTile(
               expandedAlignment: Alignment.topLeft,
-              tilePadding: EdgeInsets.all(10),
+              tilePadding: const EdgeInsets.all(10),
               textColor: Colors.grey,
               iconColor: Colors.grey,
-              title: Text(vehicles[i].trademark,style: TextStyle(fontSize: 30),),
-              subtitle: Text(vehicles[i].model+'  '+vehicles[i].year,style: TextStyle(fontSize: 25),),
+              title: Text(vehicles[i].trademark,style: const TextStyle(fontSize: 30),),
+              subtitle: Text(vehicles[i].model+'  '+vehicles[i].year,style: const TextStyle(fontSize: 25),),
               trailing: IconButton(
                 tooltip: 'View Services',
                 onPressed: (){

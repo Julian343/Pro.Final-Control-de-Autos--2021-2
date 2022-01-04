@@ -12,13 +12,13 @@ class detail_vehicle extends StatefulWidget {
 
 class _detail_vehicleState extends State<detail_vehicle> {
 late List<service> _services;
-late Color _done;
 @override
 void initState() {
       _services=widget.services;
   super.initState();
   
 }
+
 
   @override
   Widget build(BuildContext context) {
@@ -37,11 +37,11 @@ void initState() {
         ],
         leading: IconButton(onPressed: (){
             Navigator.of(context).pop(_services);
-          }, icon: Icon(Icons.arrow_back)),
+          }, icon: const Icon(Icons.arrow_back)),
         title: Row(
         children: [
-          Text(widget.model+' '+widget.year+'    ',style: TextStyle(fontSize: 30),),
-          Text(widget.trademark,style: TextStyle(fontSize: 15),),
+          Text(widget.model+' '+widget.year+'    ',style: const TextStyle(fontSize: 30),),
+          Text(widget.trademark,style: const TextStyle(fontSize: 15),),
         ],
       ),
       
@@ -54,18 +54,24 @@ void initState() {
       body: ListView.builder(
         reverse: true,
         itemBuilder: (context,i){
+
+          void _done(){
+            setState(() {
+              _services[i].done=true;
+            });
+          }
+
         return
-        ListTile(
-          tileColor: _services[i].done? null:Colors.deepOrange,
+        ExpansionTile(
+          expandedAlignment: Alignment.topLeft,
+          trailing: _services[i].done?null: IconButton(onPressed: (){_done();}, icon: const Icon(Icons.done_sharp,color: Colors.red,)),
           leading: Text(_services[i].date),
-          trailing: Text('\$'+_services[i].price.toString()),
-          title: Text(_services[i].mileage),
-          subtitle: Column(children: [
-            Text(_services[i].servicee),
-            Text(_services[i].workshop),
-            Text(i.toString())
-          ],),
-        );
+          title: Text('\$'+_services[i].price.toString(),textAlign: TextAlign.center,),
+          children: [
+           Text('Mieleage:   '+_services[i].mileage+'\nService:   '+_services[i].servicee+'\nWorkshop:   '+_services[i].workshop,style: const TextStyle(fontSize: 24),),
+           Text( '',style: const TextStyle(fontSize: 25),),
+        ],)
+        ;
       },
       
       itemCount: _services.length, ));
