@@ -1,3 +1,9 @@
+//Proyecto final sobre Control y programacion de servicios automotrices.
+// MPOO  2021-2
+// --Juan Carlos Julian Luis--
+
+
+// Pagina para agrerar Un servicio
 
 import 'package:control_autos/class.dart';
 import 'package:flutter/material.dart';
@@ -34,9 +40,11 @@ class _addServicesState extends State<addServices> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
+
+          //Lectura de los datos de un servicio 
           Row( mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('Date / Fecha : ',style: TextStyle(fontSize: 25)),
+              const Text('Date / Fecha : ',style: TextStyle(fontSize: 25)),
               TextButton(
                   onPressed: () {
                     showDatePicker(
@@ -55,7 +63,7 @@ class _addServicesState extends State<addServices> {
           ),
           TextField(
             decoration:
-                InputDecoration(filled: true, labelText: 'Service / Servicio'),
+                const InputDecoration(filled: true, labelText: '* Service / Servicio'),
             textAlign: TextAlign.center,
             onChanged: (_service) {
               setState(() {
@@ -66,7 +74,7 @@ class _addServicesState extends State<addServices> {
           ),
           TextField(
             decoration:
-                InputDecoration(filled: true, labelText: 'Cost / Costo'),
+                const InputDecoration(filled: true, labelText: '* Cost / Costo'),
             textAlign: TextAlign.center,
             onChanged: (_price) {
               setState(() {
@@ -76,8 +84,8 @@ class _addServicesState extends State<addServices> {
             },
           ),
           TextField(
-            decoration: InputDecoration(
-                filled: true, labelText: 'Mileage / Kilometrage'),
+            decoration: const InputDecoration(
+                filled: true, labelText: '* Mileage / Kilometrage'),
             textAlign: TextAlign.center,
             onChanged: (_mileage) {
               setState(() {
@@ -88,7 +96,7 @@ class _addServicesState extends State<addServices> {
           ),
           TextField(
             decoration:
-                InputDecoration(filled: true, labelText: 'Workshop / Taller'),
+                const InputDecoration(filled: true, labelText: '* Workshop / Taller'),
             textAlign: TextAlign.center,
             onChanged: (_workshop) {
               setState(() {
@@ -124,6 +132,8 @@ class _addServicesState extends State<addServices> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
+
+              // Boton de agregar que solo esta disponible si todos los datos esten llenos
               TextButton(
                   onPressed: ser & wor & mil & pri
                       ? () {
@@ -133,15 +143,17 @@ class _addServicesState extends State<addServices> {
                         }
                       : null,
                   child: Column(
-                    children: [const Text('Add'), const Icon(Icons.note_add)],
+                    children: const [Text('Add'), Icon(Icons.note_add)],
                   )),
+
+              // Boton para cancelar
               TextButton(
                   onPressed: () {
                     _services = widget.eservices;
                     Navigator.of(context).pop(_services);
                   },
                   child: Column(
-                    children: [
+                    children: const [
                       Text('Cancel'),
                       Icon(Icons.cancel),
                     ],

@@ -1,3 +1,9 @@
+//Proyecto final sobre Control y programacion de servicios automotrices.
+// MPOO  2021-2
+// --Juan Carlos Julian Luis--
+
+
+// Pagina para agregar los vehiculos
 
 import 'package:control_autos/class.dart';
 import 'package:flutter/material.dart';
@@ -13,8 +19,8 @@ class editvh extends StatefulWidget {
 
 class _editvhState extends State<editvh> {  
   late List<vehicle> _vehicles;
-  String trademark='N/A',model='N/A',submodel='N/A',vin='N/A',typetr='N/A',year='N/A',motor='N/A';
-  bool activebutton=false, tra=false,mod=false,ye=false;
+  String trademark='N/A',model='N/A',submodel='N/A',vin='N/A',typetr='Standar',year='N/A',motor='N/A', plate='N/A';
+  bool activebutton=false, tra=false,mod=false,ye=false, trans=true;
   @override
   void initState() {
     _vehicles=widget.vehicles;
@@ -28,10 +34,23 @@ class _editvhState extends State<editvh> {
       padding: const EdgeInsets.all(15.0),
       child: Column( mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
+
+          // Aqui leemos la informacion que se necesita para agregar un nuevo vehiculo
           TextField(
-            decoration: InputDecoration(
+             decoration: const InputDecoration(
               filled: true,
-              labelText: 'Trademark / Marca'
+              labelText: 'Vin'
+            ),
+            textAlign: TextAlign.center,
+            onChanged: (_plate){setState(() {
+              plate=_plate;
+            });},
+          ),
+          
+          TextField(
+            decoration: const InputDecoration(
+              filled: true,
+              labelText: '* Trademark / Marca'
             ),
             textAlign: TextAlign.center,
             onChanged: (_trademark){
@@ -42,9 +61,9 @@ class _editvhState extends State<editvh> {
 
           ),
           TextField(
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               filled: true,
-              labelText: 'Model / Modelo'
+              labelText: '* Model / Modelo'
             ),
             textAlign: TextAlign.center,
             onChanged: (_model){setState(() {
@@ -53,7 +72,7 @@ class _editvhState extends State<editvh> {
             });},
           ),
            TextField(
-             decoration: InputDecoration(
+             decoration: const InputDecoration(
               filled: true,
               labelText: 'Submodel / Submodelo'
             ),
@@ -64,9 +83,9 @@ class _editvhState extends State<editvh> {
             },
           ),
            TextField(
-             decoration: InputDecoration(
+             decoration: const InputDecoration(
               filled: true,
-              labelText: 'Year / Año'
+              labelText: '* Year / Año'
             ),
             textAlign: TextAlign.center,
             onChanged: (_year){setState(() {
@@ -75,7 +94,7 @@ class _editvhState extends State<editvh> {
             });},
           ),
            TextField(
-             decoration: InputDecoration(
+             decoration: const InputDecoration(
               filled: true,
               labelText: 'Vin'
             ),
@@ -85,7 +104,7 @@ class _editvhState extends State<editvh> {
             });},
           ),
            TextField(
-             decoration: InputDecoration(
+             decoration: const InputDecoration(
               filled: true,
               labelText: 'Motor / '
             ),
@@ -94,30 +113,53 @@ class _editvhState extends State<editvh> {
               motor=_motor;
             });},
           ),
-           TextField(
-             decoration: InputDecoration(
-              filled: true,
-              labelText: 'Typetransmission / Transmision'
-            ),
-            textAlign: TextAlign.center,
-            onChanged: (_typetr){setState(() {
-              typetr=_typetr;
-            });},
+
+
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text('Transmission:  ',style: TextStyle(color: Colors.black, fontSize: 20)),
+              Container(
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: Colors.indigo),
+                    height: 50,
+                    width: 150,
+                    child: TextButton(
+                      onPressed: () {
+                        if (trans == true) {
+                          setState(() {
+                            trans = false;
+                            typetr='Automatica';
+                          });
+                        } else {
+                          setState(() {
+                            trans = true;
+                            typetr='Standar';
+                          });
+                        }
+                      },
+                      child:Text(trans?'Standar':'Automatic',style: const TextStyle(color: Colors.black, fontSize: 20),textAlign: TextAlign.center,),
+                    ),
+                  ),
+            ],
           ),
           
 
 
          Row( mainAxisAlignment: MainAxisAlignment.spaceEvenly,
            children: [
+
+             // Boton para agregar en el que obrigatoriamente hay que poner marca, modelo y año
              TextButton(
                onPressed: mod&ye&tra ? (){
-               _vehicles.add(vehicle(trademark,model,submodel,year,vin,motor,typetr,[]));
+               _vehicles.add(vehicle(plate,trademark,model,submodel,year,vin,motor,typetr,[]));
                 Navigator.of(context).pop(_vehicles);
              }:null, 
              child: Column(children: [
                const Text('Add'),
                const Icon(Icons.note_add)
              ],)),
+
+             // Boton para cancelar
              TextButton(onPressed: (){
                _vehicles=widget.vehicles;
                Navigator.of(context).pop(_vehicles);

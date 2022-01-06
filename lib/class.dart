@@ -1,10 +1,15 @@
-import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+//Proyecto final sobre Control y programacion de servicios automotrices.
+// MPOO  2021-2
+// --Juan Carlos Julian Luis--
+
+
+//Pagina en la que defino los contructores que uilizare
+
 
 class vehicle {
     late List<service> services;
-    late String trademark,model,submodel,vin,typetr,motor,year;
-    vehicle(this.trademark,this.model,this.submodel,this.year,this.vin,this.motor,this.typetr,this.services);
+    late String plate,trademark,model,submodel,vin,typetr,motor,year;
+    vehicle(this.plate,this.trademark,this.model,this.submodel,this.year,this.vin,this.motor,this.typetr,this.services);
 }
 
 class service {
@@ -14,4 +19,3 @@ class service {
     service(this.date,this.servicee,this.price,this.mileage,this.workshop,this.done);
 
 }
-
