@@ -42,6 +42,7 @@ class _addServicesState extends State<addServices> {
         children: [
 
           //Lectura de los datos de un servicio 
+          SizedBox(height: 30,),
           Row( mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text('Date / Fecha : ',style: TextStyle(fontSize: 25)),

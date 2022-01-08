@@ -30,16 +30,16 @@ class _editvhState extends State<editvh> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body :Padding(
-      padding: const EdgeInsets.all(15.0),
-      child: Column( mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      appBar: AppBar(),
+      body :ListView(
+        padding: EdgeInsets.all(10),
         children: [
 
           // Aqui leemos la informacion que se necesita para agregar un nuevo vehiculo
           TextField(
              decoration: const InputDecoration(
               filled: true,
-              labelText: 'Vin'
+              labelText: '*Plate / Placa'
             ),
             textAlign: TextAlign.center,
             onChanged: (_plate){setState(() {
@@ -114,7 +114,7 @@ class _editvhState extends State<editvh> {
             });},
           ),
 
-
+          SizedBox(height: 30,),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -143,7 +143,7 @@ class _editvhState extends State<editvh> {
             ],
           ),
           
-
+        SizedBox(height: 50,),
 
          Row( mainAxisAlignment: MainAxisAlignment.spaceEvenly,
            children: [
@@ -172,6 +172,6 @@ class _editvhState extends State<editvh> {
           
         ],
       ),
-    ));
+    );
   }
 }

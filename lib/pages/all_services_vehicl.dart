@@ -49,12 +49,14 @@ void initState() {
         leading: IconButton(onPressed: (){
             Navigator.of(context).pop(_services);
           }, icon: const Icon(Icons.arrow_back)),
-        title: Row(
-        children: [
-          Text(widget.model+' '+widget.year+'    ',style: const TextStyle(fontSize: 30),),
-          Text(widget.trademark+'     '+widget.plate,style: const TextStyle(fontSize: 15),),
-        ],
+        title: Center(
+          child: Column(
+          children: [
+            Text(widget.plate,style: const TextStyle(fontSize: 30),),
+            Text(widget.trademark+' '+widget.model+' '+widget.year+'    ',style: const TextStyle(fontSize: 15),),
+          ],
       ),
+        ),
       
       ),
 
@@ -63,33 +65,34 @@ void initState() {
 
 
       body: ListView.builder(
-        reverse: true,
-        itemBuilder: (context,i){
 
-          // Funcion para cambiar el estado del servicio si ya se hizo
+        itemBuilder: (context,i){
+          int s= _services.length-i-1;
+
+          // Funcion para cambsasdasdiar el estado del servicio si ya se hizo
           void _done(){
             setState(() {
-              _services[i].done=true;
+              _services[s].done=true;
             });
           }
-
+            
         return
 
         // Targetas que muestran la informacion de cada servicio 
         ExpansionTile(
           expandedAlignment: Alignment.center,
-          trailing: _services[i].done? const Icon(Icons.done_sharp,color: Colors.green,): IconButton(onPressed: (){_done();}, icon: const Icon(Icons.done_sharp,color: Colors.red,)),
-          title: Text(_services[i].date),
+          trailing: _services[s].done? const Icon(Icons.done_sharp,color: Colors.green,): IconButton(onPressed: (){_done();}, icon: const Icon(Icons.done_sharp,color: Colors.red,)),
+          title: Text(_services[s].date),
           subtitle: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Text('\$'+_services[i].price.toString()),
-              Text(_services[i].mileage+' KM')
+              Text('\$'+_services[s].price.toString()),
+              Text(_services[s].mileage+' KM')
             ],
           ),
           children: [
-           Text(_services[i].servicee,style: const TextStyle(fontSize: 25),),
-           Text( '\n\nWorkshop:   '+_services[i].workshop ,style: const TextStyle(fontSize: 18),),
+           Text(_services[s].servicee,style: const TextStyle(fontSize: 25),),
+           Text( '\n\nWorkshop:   '+_services[s].workshop ,style: const TextStyle(fontSize: 18),),
         ],)
         ;
       },
